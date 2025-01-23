@@ -1,5 +1,3 @@
-import React from "react";
-
 import Lab3 from "./Lab3";
 import { Route, Routes, Navigate } from "react-router";
 import TOC from "./TOC";

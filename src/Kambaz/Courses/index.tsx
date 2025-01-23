@@ -1,4 +1,3 @@
-import React from "react";
 import CourseNavigation from "./Navigation";
 import Modules from "./Modules";
 import Home from "./Home";
