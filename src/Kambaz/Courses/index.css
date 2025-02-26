@@ -1,0 +1,50 @@
+.wd-border-fat {
+    border-width: 20px 30px 20px 30px; }
+.wd-border-thin {
+    border-width: 1px; }
+.wd-border-solid {
+    border-style: solid; }
+.wd-border-dashed {
+    border-style: dashed; }
+.wd-border-yellow {
+    border-color: #ffff07; }
+.wd-border-red {
+    border-color: #ff7070; }
+.wd-border-blue {
+    border-color: #7070ff; }
+.wd-border-white {
+    border-color: #000000; }
+
+.wd-rounded-corners-all-around {
+    border-radius: 50px;
+}
+
+.wd-padding-fat {
+    padding: 10px;
+}
+
+.custom-title {
+    font-size: 1.25rem;
+}
+
+.wd-status-border-thin {
+    border-width: 1px 1px; }
+.wd-status-border-solid {
+    border-style: solid; }
+.wd-status-border-dashed {
+    border-style: dashed; }
+.wd-status-border-green {
+    border-color: green; }
+.wd-status-border-red {
+    border-color: #ff7070; }
+.wd-status-border-blue {
+    border-color: #7070ff; }
+.wd-status-border-white {
+    border-color: #000000; }
+
+.wd-status-rounded-corners-all-around {
+    border-radius: 15px;
+}
+.wd-status-padding-fat {
+    padding: 1px;
+}
