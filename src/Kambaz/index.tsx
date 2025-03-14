@@ -5,7 +5,6 @@ import Dashboard from "./Dashboard";
 import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
 import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import { useSelector, useDispatch } from "react-redux";
 import { addCourse, deleteCourse, updateCourse, enrollCourse, unenrollCourse } from "./Courses/reducer"; 

@@ -32,9 +32,6 @@ import Square from "./Square";
 import Highlight from "./Highlight";
 import PathParameters from "./PathParameters";
 import AddPathParameters from "./AddPathParameters";
-
-import { useSelector } from "react-redux";
-import { ListGroup } from "react-bootstrap";
  
 export default function Lab3() {
   console.log('Hello World!');

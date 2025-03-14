@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import * as db from "./Database";
 import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -23,7 +22,7 @@ export default function Dashboard(
   });
   const [ show, setShow ] = useState(false);
   const handleToggle = () => setShow(!show);
-  const [ isEnrolled, setIsEnrolled ] = useState(enrollments.some((enrollment) =>
+  const [ isEnrolled ] = useState(enrollments.some((enrollment) =>
     enrollment.user === currentUser._id && enrollment.course === course._id))
   useEffect(() => {
     enrollments.some((enrollment) =>
