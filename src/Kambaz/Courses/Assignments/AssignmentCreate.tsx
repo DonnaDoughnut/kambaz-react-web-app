@@ -2,7 +2,7 @@ import { Form, FormGroup, FormLabel, FormControl, Row, Col, FormSelect, FormChec
 import { MdCalendarMonth } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import "../index.css"; 
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import Datetime from "react-datetime";
 import moment, { Moment } from "moment";
 import 'react-datetime/css/react-datetime.css';
@@ -16,7 +16,7 @@ export default function AssignmentCreate(
     handleClose: () => void;
   }
 ) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   // const assignments = db.assignments;;
   // const { cid, aid } = useParams();
