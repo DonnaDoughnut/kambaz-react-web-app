@@ -1,21 +1,43 @@
 import AssignmentsControls from "./AssignmentsControls";
 import AssignmentControls from "./AssignmentControls";
 import AssignmentAllControlButtons from "./AssignmentAllControlButtons";
-import { ListGroup } from "react-bootstrap";
+import { FormControl, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BsGripVertical } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { PiNotebookDuotone } from "react-icons/pi";
 import { useParams } from "react-router";
 import * as db from "../../Database";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addAssignment, deleteAssignment } from "./reducer";
+import moment, { Moment } from "moment";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const assignments = db.assignments;
+  const [ assignmentTitle, setAssignmentTitle ] = useState("New Assignment");
+  const [ assignmentPoints, setAssignmentPoints ] = useState(0);
+  const [ assignmentStartDate, setAssignmentStartDate ] = useState(moment().format('MMM DD, YYYY, hh:mm A'));
+  const [ assignmentEndDate, setAssignmentEndDate ] = useState(moment().add(2, 'week').format('MMM DD, YYYY, hh:mm A'));
+  const [ assignmentDueDate, setAssignmentDueDate ] = useState(moment().add(2, 'week').format('MMM DD, YYYY, hh:mm A'));
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+
+
+  const dispatch = useDispatch();
+  
 
   return (
     <div id="wd-assignments">
-      <AssignmentsControls /><br /><br /><br />
+      <AssignmentsControls  setAssignmentTitle={setAssignmentTitle} setAssignmentPoints={setAssignmentPoints}
+                            setAssignmentStartDate={setAssignmentStartDate} setAssignmentEndDate={setAssignmentEndDate} setAssignmentDueDate={setAssignmentDueDate}
+                            assignmentTitle={assignmentTitle} assignmentPoints={assignmentPoints}
+                            assignmentStartDate={assignmentStartDate} assignmentEndDate={assignmentEndDate} assignmentDueDate={assignmentDueDate}
+                            addAssignment = {() => {
+                              dispatch(addAssignment({ title: assignmentTitle, course: cid, points: assignmentPoints,
+                                                       start_date: assignmentStartDate, end_date: assignmentEndDate, due_date: assignmentDueDate }));
+                              setAssignmentTitle(""); setAssignmentPoints(0); setAssignmentStartDate(moment().format('MMM DD, YYYY, hh:mm A')); 
+                              setAssignmentEndDate(moment().add(2, 'week').format('MMM DD, YYYY, hh:mm A')); setAssignmentDueDate(moment().add(2, 'week').format('MMM DD, YYYY, hh:mm A')) }} />
+        <br /><br /><br />
       <ListGroup className="rounded-0" id="wd-assignments">
         <ListGroup.Item className="wd-all-assignments p-0 mb-5 fs-5 border-gray">
           <div className="wd-title p-3 ps-2 bg-secondary">
@@ -29,22 +51,34 @@ export default function Assignments() {
                 <ListGroup.Item className="wd-assignment p-3 ps-1 d-flex align-items-center">
                   <BsGripVertical className="me-2 fs-3" />
                   <PiNotebookDuotone className="me-2 fs-3 text-success" />
+                  
                   <div className="ms-3">
                     <Link to={`/Kambaz/Courses/${cid}/Assignments/${assignment._id}`} className="text-decoration-none text-black">
-                      <h3>{assignment._id} {assignment.title}</h3></Link>
+                      
+                      
+                      <h3>{assignment._id} {assignment.title}</h3>  
+                
+                      </Link>
                     <h6 className="text-danger"> Multiple Modules
                     <span className="wd-fg-color-black"> | <strong>Not available until</strong> {assignment.start_date} at 12:00am | </span></h6>
-                    <h6> <strong>Due</strong> {assignment.end_date} at 11:59pm | 100 pts </h6>
+                    <h6> <strong>Due</strong> {assignment.end_date} at 11:59pm | {assignment.points} pts </h6>
                   </div>
-                  <div className="ms-auto"><AssignmentControls /></div>
+              
+                  <div className="ms-auto"><AssignmentControls assignmentId={assignment._id} 
+                                                               deleteAssignment = {(assignmentId) => {
+                                                                dispatch(deleteAssignment(assignmentId))
+                                                               }}/></div>
                 </ListGroup.Item>
               </ListGroup>
+
 
             ))}
           
           
         </ListGroup.Item>
       </ListGroup>
+
+      
     </div>
   );}
 
