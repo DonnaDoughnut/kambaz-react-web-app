@@ -4,7 +4,7 @@ import { FormControl, Row, Col } from "react-bootstrap";
 import { BsGripVertical } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 import AssignmentAllControlButtons from "../Assignments/AssignmentAllControlButtons";
-import AssignmentControls from "../Assignments/AssignmentControls";
+// import AssignmentControls from "../Assignments/AssignmentControls";
 
 export default function Quizzes() {
     return (
@@ -28,7 +28,7 @@ export default function Quizzes() {
                             <h6> <strong>Closed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due</strong> Jan 27 at 11:59pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;29 pts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;11 Questions</h6>
                             </div>
                             <div className="ms-auto">
-                            <AssignmentControls /></div>
+                            </div>
                         </ListGroup.Item>
                         <ListGroup.Item className="wd-assignment p-3 ps-1 d-flex align-items-center">
                             <BsGripVertical className="me-2 fs-3" />
@@ -38,7 +38,7 @@ export default function Quizzes() {
                             <h6> <strong>Closed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due</strong> Feb 3 at 11:59pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;23 pts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6 Questions</h6>
                             </div>
                             <div className="ms-auto">
-                            <AssignmentControls /></div>
+                            </div>
                         </ListGroup.Item>
                         <ListGroup.Item className="wd-assignment p-3 ps-1 d-flex align-items-center">
                             <BsGripVertical className="me-2 fs-3" />
@@ -48,7 +48,7 @@ export default function Quizzes() {
                             <h6> <strong>Closed&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Due</strong> Feb 10 at 11:59pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32 pts&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;7 Questions</h6>
                             </div>
                             <div className="ms-auto">
-                            <AssignmentControls /></div>
+                            </div>
                         </ListGroup.Item>
                     </ListGroup>
                 </ListGroup.Item>

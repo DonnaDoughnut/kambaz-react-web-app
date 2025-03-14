@@ -2,15 +2,10 @@ import { Form, FormGroup, FormLabel, FormControl, Row, Col, FormSelect, FormChec
 import { MdCalendarMonth } from "react-icons/md";
 import { RxCross2 } from "react-icons/rx";
 import "../index.css"; 
-import * as db from "../../Database";
-import { Link, useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 import Datetime from "react-datetime";
-import { useState } from "react";
 import moment, { Moment } from "moment";
 import 'react-datetime/css/react-datetime.css';
-import { useSelector } from "react-redux";
-import { updateAssignment } from "./reducer";
 
 export default function AssignmentCreate(
   { assignmentTitle, assignmentPoints, assignmentStartDate, assignmentEndDate, assignmentDueDate,

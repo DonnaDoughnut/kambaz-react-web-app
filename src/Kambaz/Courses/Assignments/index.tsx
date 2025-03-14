@@ -1,17 +1,16 @@
 import AssignmentsControls from "./AssignmentsControls";
 import AssignmentControls from "./AssignmentControls";
 import AssignmentAllControlButtons from "./AssignmentAllControlButtons";
-import { FormControl, ListGroup } from "react-bootstrap";
+import { ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BsGripVertical } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { PiNotebookDuotone } from "react-icons/pi";
 import { useParams } from "react-router";
-import * as db from "../../Database";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addAssignment, deleteAssignment } from "./reducer";
-import moment, { Moment } from "moment";
+import moment from "moment";
 
 export default function Assignments() {
   const { cid } = useParams();
