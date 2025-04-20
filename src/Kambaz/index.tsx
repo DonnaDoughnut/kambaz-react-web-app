@@ -17,12 +17,13 @@ export default function Kambaz() {
   // const [ course, setCourse ] = useState<any>({});
   const { currentUser } = useSelector((state: any) => state.accountReducer); 
   const fetchCourses = async () => {
+    console.log("currentUser", currentUser);
     try {
       const courses = await userClient.findMyCourses();
       console.log("courses:", courses);
       setCourses(courses);
     } catch (error) {
-      console.error("Hello");
+      console.error(error);
     }
   };
   useEffect(() => {
