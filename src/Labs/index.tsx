@@ -37,7 +37,7 @@ export default function Labs() {
       <h3>Section: 01</h3>
       <TOC />
       <Routes>
-        <Route path="/" element={<Navigate to="Lab4" />} />
+        <Route path="/" element={<Navigate to="Lab5" />} />
         <Route path="Lab1" element={<Lab1 />} />
         <Route path="Lab2/*" element={<Lab2 />} />
         <Route path="Lab2/BackgroundColors" element={<BackgroundColors />} />
