@@ -9,7 +9,7 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import AssignmmentRoutes from "./Kambaz/Assignments/routes.js";
 // import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
-import cors from "cors";
+import cors from "cors"; 
 const app = express();
 app.use(
     cors({
