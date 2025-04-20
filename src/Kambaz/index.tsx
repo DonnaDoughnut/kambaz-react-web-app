@@ -22,7 +22,7 @@ export default function Kambaz() {
       console.log("courses:", courses);
       setCourses(courses);
     } catch (error) {
-      console.error(error);
+      console.error("Hello");
     }
   };
   useEffect(() => {
