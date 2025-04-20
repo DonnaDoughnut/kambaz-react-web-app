@@ -1,15 +1,14 @@
 import { Link } from "react-router-dom";
-import { Row, Col, Card, Button, FormControl } from "react-bootstrap";
+import { Row, Col, Card, FormControl } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useState } from "react";
 import Session from "./Account/Session";
 import * as db from "./Database";
 
 export default function Dashboard(
-  { courses, setCourses, course, setCourse, 
+  { courses, course, setCourse, 
     addCourse, deleteCourse, updateCourse } : {
-      courses: any[]; setCourses: (courses: any[]) => void; course: any; setCourse: (course: any) => void;
+      courses: any[]; course: any; setCourse: (course: any) => void;
       addCourse: (course: any) => void; deleteCourse: (courseId: string) => void;
       updateCourse: (courseId: string) => void; })
 {
