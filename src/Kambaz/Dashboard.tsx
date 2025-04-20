@@ -31,8 +31,6 @@ export default function Dashboard(
                       onClick={() => addCourse(course)} > Add </button>
               <button className="btn btn-warning float-end me-2"
                       onClick={() => updateCourse(course._id)} id="wd-update-course-click"> Update </button>
-              <button className="btn btn-danger float-end me-2"
-                      onClick={handleToggle}> Enrollments </button>
           </h5>  <br />
           <FormControl value={course.name} className="mb-2"
                 onChange={(e) => setCourse({ ...course, name: e.target.value })} />

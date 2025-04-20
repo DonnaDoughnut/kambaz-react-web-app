@@ -19,6 +19,7 @@ export default function Kambaz() {
   const fetchCourses = async () => {
     try {
       const courses = await userClient.findMyCourses();
+      console.log("courses:", courses);
       setCourses(courses);
     } catch (error) {
       console.error(error);
