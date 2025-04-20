@@ -7,10 +7,12 @@ import { BsGripVertical } from "react-icons/bs";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { PiNotebookDuotone } from "react-icons/pi";
 import { useParams } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addAssignment, deleteAssignment } from "./reducer";
+import { setAssignments, addAssignment, deleteAssignment } from "./reducer";
 import moment from "moment";
+import * as coursesClient from "../client";
+import * as assignmentsClient from "./client";
 
 export default function Assignments() {
   const { cid } = useParams();
@@ -24,6 +26,25 @@ export default function Assignments() {
 
   const dispatch = useDispatch();
   
+  // *********************
+  const removeModule = async (assignmentId: string) => {
+    await assignmentsClient.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  };
+  const createAssignmentForCourse = async () => {
+    if (!cid) return;
+    const newAssignment = { title: assignmentTitle, points: assignmentPoints, start_date: assignmentStartDate, end_date: assignmentEndDate, due_date: assignmentDueDate, course: cid };
+    const assignment = await coursesClient.createAssignmentForCourse(cid, newAssignment);
+    dispatch(addAssignment(assignment));
+  }
+  const fetchModules = async () => {
+    const assignments = await coursesClient.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  };
+  useEffect(() => {
+    fetchModules();
+  }, []);
+  // *********************
 
   return (
     <div id="wd-assignments">
@@ -31,11 +52,7 @@ export default function Assignments() {
                             setAssignmentStartDate={setAssignmentStartDate} setAssignmentEndDate={setAssignmentEndDate} setAssignmentDueDate={setAssignmentDueDate}
                             assignmentTitle={assignmentTitle} assignmentPoints={assignmentPoints}
                             assignmentStartDate={assignmentStartDate} assignmentEndDate={assignmentEndDate} assignmentDueDate={assignmentDueDate}
-                            addAssignment = {() => {
-                              dispatch(addAssignment({ title: assignmentTitle, course: cid, points: assignmentPoints,
-                                                       start_date: assignmentStartDate, end_date: assignmentEndDate, due_date: assignmentDueDate }));
-                              setAssignmentTitle(""); setAssignmentPoints(0); setAssignmentStartDate(moment().format('MMM DD, YYYY, hh:mm A')); 
-                              setAssignmentEndDate(moment().add(2, 'week').format('MMM DD, YYYY, hh:mm A')); setAssignmentDueDate(moment().add(2, 'week').format('MMM DD, YYYY, hh:mm A')) }} />
+                            addAssignment = {createAssignmentForCourse} />
         <br /><br /><br />
       <ListGroup className="rounded-0" id="wd-assignments">
         <ListGroup.Item className="wd-all-assignments p-0 mb-5 fs-5 border-gray">
@@ -44,7 +61,6 @@ export default function Assignments() {
             <IoMdArrowDropdown className="me-2 fs-3" /> ASSIGNMENTS <AssignmentAllControlButtons />
           </div>
           {assignments
-            .filter((assignment: any) => assignment.course === cid)
             .map((assignment: any) => (
               <ListGroup className="wd-assignments rounded-0">
                 <ListGroup.Item className="wd-assignment p-3 ps-1 d-flex align-items-center">
@@ -64,9 +80,7 @@ export default function Assignments() {
                   </div>
               
                   <div className="ms-auto"><AssignmentControls assignmentId={assignment._id} 
-                                                               deleteAssignment = {(assignmentId) => {
-                                                                dispatch(deleteAssignment(assignmentId))
-                                                               }}/></div>
+                                                               deleteAssignment = {removeModule}/> </div>
                 </ListGroup.Item>
               </ListGroup>
 

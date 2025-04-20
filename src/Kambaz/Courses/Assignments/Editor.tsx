@@ -39,14 +39,14 @@ export default function AssignmentsEditor(
               <FormGroup className="mb-3" controlId="wd-name">
                 <FormLabel>Assignment Name</FormLabel>
                 <FormControl type="text" placeholder={`${assignment.title}`}
-                             onChange={(e) => {{ setAssignment({ ...assignment, title: e.target.value}) }; updateAssignment()}} /></FormGroup>
+                             onChange={(e) => { setAssignment({ ...assignment, title: e.target.value}) }} /></FormGroup>
               <FormGroup className="mb-3" controlId="wd-textarea">
                 <FormControl as="textarea" rows={7} placeholder="The assignment is available online" /></FormGroup>
                 <FormGroup as={Row} className="mb-3" controlId="wd-points">
                 <FormLabel column sm={3}>Points</FormLabel>
                 <Col sm={9}>
                   <FormControl type="number" placeholder={assignment.points}
-                              onChange={(e) => {{ setAssignment({ ...assignment, points: Number(e.target.value)}) }; updateAssignment()}} /></Col></FormGroup>
+                              onChange={(e) => { setAssignment({ ...assignment, points: Number(e.target.value)}) }} /></Col></FormGroup>
               <FormGroup as={Row} className="mb-3" controlId="wd-groups">
                 <FormLabel column sm={3}>Assignment Group</FormLabel>
                 <Col sm={9}>
@@ -86,7 +86,7 @@ export default function AssignmentsEditor(
                       <FormLabel as="legend" className="custom-title"> Due </FormLabel>
                       <InputGroup className="mb-3">
                         <Col sm={11}>
-                          <Datetime value={assignment.due_date} onChange={(e) => {handleChangeDueDate(e); updateAssignment()}}
+                          <Datetime value={assignment.due_date} onChange={(e) => handleChangeDueDate(e)}
                               dateFormat="MMM DD, YYYY" timeFormat="hh:mm A" inputProps={{ className: 'form-control' }} /></Col>
                         <Col sm={1} className="d-flex justify-content-center align-items-center bg-light border rounded"> 
                           <MdCalendarMonth /></Col>
@@ -98,14 +98,14 @@ export default function AssignmentsEditor(
                       <Col sm={6}>
                         <InputGroup className="mb-3">
                           <Col sm={10}>
-                            <Datetime value={assignment.start_date} onChange={(e) => {handleChange(e); updateAssignment()}} 
+                            <Datetime value={assignment.start_date} onChange={(e) => handleChange(e)} 
                                 dateFormat="MMM DD, YYYY" timeFormat="hh:mm A" inputProps={{ className: 'form-control' }} /></Col>
                           <Col sm={2} className="d-flex justify-content-center align-items-center bg-light border rounded">
                             <MdCalendarMonth /></Col></InputGroup></Col>
                       <Col sm={6}>
                         <InputGroup className="mb-3">
                           <Col sm={10}>
-                            <Datetime value={assignment.end_date} onChange={(e) => {handleChangeEndDate(e); updateAssignment()}} 
+                            <Datetime value={assignment.end_date} onChange={(e) => handleChangeEndDate(e)} 
                                 dateFormat="MMM DD, YYYY" timeFormat="hh:mm A" inputProps={{ className: 'form-control' }} /></Col>
                           <Col sm={2} className="d-flex justify-content-center align-items-center bg-light border rounded">
                             <MdCalendarMonth /></Col></InputGroup></Col>

@@ -11,12 +11,13 @@ import PeopleTable from "./People/Table";
 import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import { FaAlignJustify } from "react-icons/fa";
 import { updateAssignment } from "../Courses/Assignments/reducer";
+import * as assignmentsClient from "./Assignments/client";
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import { courses } from "../Database";
 // import moment, { Moment } from "moment";
 // import { addCourse, deleteCourse, updateCourse } from "../Courses/reducer"; 
-
+ 
 export default function Courses({ courses }: { courses: any[]; }) {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
@@ -40,6 +41,10 @@ export default function Courses({ courses }: { courses: any[]; }) {
   //     })
   //   )
   // }
+  const saveAssignment = async (assignment: any) => {
+    await assignmentsClient.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  }
 
     return (
       <div id="wd-courses">
@@ -63,7 +68,7 @@ export default function Courses({ courses }: { courses: any[]; }) {
                   assignments = {assignments}
                   assignment = {assignment}
                   setAssignment = {setAssignment}
-                  updateAssignment = {() => dispatch(updateAssignment(assignment))}  />} /> 
+                  updateAssignment = {() => saveAssignment(assignment)}  />} /> 
               <Route path="Quizzes" element={<Quizzes />} />
               <Route path="Grades" element={<Grades />} />
               <Route path="People" element={<PeopleTable />} />
