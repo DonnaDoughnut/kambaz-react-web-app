@@ -14,6 +14,7 @@ export default function Dashboard(
 {
   console.log("db", db.courses);
   const { currentUser } = useSelector((state: any) => state.accountReducer);
+  console.log("currentUser", currentUser);
   const [ show, setShow ] = useState(false);
   const handleToggle = () => setShow(!show);
 
