@@ -4,10 +4,8 @@ import { Button, Form } from "react-bootstrap";
 import { setCurrentUser } from "./reducer";
 import { useDispatch } from "react-redux";
 import * as client from "./client";
-const TRYING = import.meta.env.NETLIFY_URL;
 
 export default function Signin() {
-  console.log("Not working", TRYING);
   const [credentials, setCredentials] = useState<any>({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
