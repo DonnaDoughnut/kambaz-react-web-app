@@ -14,7 +14,7 @@ const app = express();
 app.use(
     cors({
         credentials: true,
-        origin: process.env.NETLIFY_URL || "http://localhost:5173",
+        origin: 'https://iridescent-travesseiro-bdfdd1.netlify.app',
 }));
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kambaz",
