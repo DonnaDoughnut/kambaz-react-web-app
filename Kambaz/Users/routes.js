@@ -59,8 +59,10 @@ export default function UserRoutes(app) {
 
     const findCoursesForEnrolledUser = (req, res) => {
         let { userId } = req.params;
+        console.log("current", userId);
         if (userId === "current") {
             const currentUser = req.session["currentUser"];
+            console.log("currentUser", currentUser);
             if (!currentUser) {
                 res.sendStatus(401);
                 return;
@@ -74,7 +76,7 @@ export default function UserRoutes(app) {
 
     const createCourse = (req, res) => {
         const currentUser = req.session["currentUser"];
-        console.log("course_idOKKKK", req.body);
+        // console.log("course_idOKKKK", req.body);
         let course_id = req.body._id;
         let newCourse;
         // console.log(course_id);
