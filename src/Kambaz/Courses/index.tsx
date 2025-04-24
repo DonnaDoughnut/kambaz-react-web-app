@@ -10,12 +10,42 @@ import Grades from "./Grades";
 import PeopleTable from "./People/Table";
 import { Navigate, Route, Routes, useParams, useLocation } from "react-router";
 import { FaAlignJustify } from "react-icons/fa";
-import { courses } from "../Database";
-
-export default function Courses() {
+import { updateAssignment } from "../Courses/Assignments/reducer";
+import * as assignmentsClient from "./Assignments/client";
+import { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+// import { courses } from "../Database";
+// import moment, { Moment } from "moment";
+// import { addCourse, deleteCourse, updateCourse } from "../Courses/reducer"; 
+ 
+export default function Courses({ courses }: { courses: any[]; }) {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
   const { pathname } = useLocation();
+
+  const { assignments } = useSelector((state: any) => state.assignmentsReducer);
+  const [ assignment, setAssignment ] = useState<any>({
+    _id: "A101", title: "Propulsion Assignment", course: "RS101", points: 100, 
+    start_date: "Jan 01, 2024, 12:00 AM", end_date: "Jan 08, 2024, 11:59 PM", due_date: "Jan 08, 2024, 11:59 PM"
+  });
+
+  const dispatch = useDispatch();
+  // const updateAssignment = () => {
+  //   setAssignments(
+  //     assignments.map((a) => {
+  //       if (a._id === assignment._id) {
+  //         return assignment;
+  //       } else {
+  //         return a;
+  //       }
+  //     })
+  //   )
+  // }
+  const saveAssignment = async (assignment: any) => {
+    await assignmentsClient.updateAssignment(assignment);
+    dispatch(updateAssignment(assignment));
+  }
+
     return (
       <div id="wd-courses">
         <h2 className="text-danger">
@@ -33,7 +63,12 @@ export default function Courses() {
               <Route path="Piazza" element={<Piazza />} />
               <Route path="Zoom" element={<Zoom />} />
               <Route path="Assignments" element={<Assignments />} />
-              <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+              <Route path="Assignments/:aid" element={
+                <AssignmentEditor
+                  assignments = {assignments}
+                  assignment = {assignment}
+                  setAssignment = {setAssignment}
+                  updateAssignment = {() => saveAssignment(assignment)}  />} /> 
               <Route path="Quizzes" element={<Quizzes />} />
               <Route path="Grades" element={<Grades />} />
               <Route path="People" element={<PeopleTable />} />
