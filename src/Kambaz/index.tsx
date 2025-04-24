@@ -6,15 +6,13 @@ import KambazNavigation from "./Navigation";
 import Courses from "./Courses";
 import { useState, useEffect } from "react";
 import ProtectedRoute from "./Account/ProtectedRoute";
-import { useSelector, useDispatch } from "react-redux";
-import { addCourse, deleteCourse, updateCourse, enrollCourse, unenrollCourse } from "./Courses/reducer"; 
+import { useSelector} from "react-redux";
 import Session from "./Account/Session";
 
-import * as client from "./Courses/client";
+// import * as client from "./Courses/client";
 import * as userClient from "./Account/client";
 import * as courseClient from "./Courses/client";
 export default function Kambaz() {
-  const dispatch = useDispatch();
   const [ courses, setCourses ] = useState<any[]>([]);  // kinda confused here.
   // const [ course, setCourse ] = useState<any>({});
   const { currentUser } = useSelector((state: any) => state.accountReducer); 
@@ -82,7 +80,6 @@ export default function Kambaz() {
                 <Route path="/Dashboard" element={<ProtectedRoute>
                   <Dashboard 
                     courses={courses}
-                    setCourses={setCourses}
                     course={course}
                     setCourse={setCourse}
                     addCourse={addNewCourse}
