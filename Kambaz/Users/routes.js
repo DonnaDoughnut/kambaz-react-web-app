@@ -76,6 +76,7 @@ export default function UserRoutes(app) {
 
     const createCourse = (req, res) => {
         const currentUser = req.session["currentUser"];
+        console.log("currentUser", currentUser);
         // console.log("course_idOKKKK", req.body);
         let course_id = req.body._id;
         let newCourse;

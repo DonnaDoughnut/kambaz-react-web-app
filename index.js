@@ -14,24 +14,19 @@ const app = express();
 app.use(
     cors({
         credentials: true,
-        origin: 'https://iridescent-travesseiro-bdfdd1.netlify.app',
+        origin: "http://localhost:5173" || process.env.NETLIFY_URL,
 }));
 const sessionOptions = {
     secret: process.env.SESSION_SECRET || "kambaz",
     resave: false,
     saveUninitialized: false,
-    proxy: true,
-    cookie: {
-        sameSite: "none", 
-        secure: true
-    }
 };
 if (process.env.NODE_ENV !== "development") {
     sessionOptions.proxy = true;
     sessionOptions.cookie = {
         sameSite: "none",
         secure: true,
-        // domain: process.env.NODE_SERVER_DOMAIN,
+        domain: process.env.NODE_SERVER_DOMAIN,
     };
 }
 app.use(session(sessionOptions));
